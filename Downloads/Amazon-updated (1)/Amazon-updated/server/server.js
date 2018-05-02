@@ -13,6 +13,23 @@ app.use(express.static('static'));
 app.use(bodyParser.json());
 
 let db;
+// routes will go here
+app.post('/api/signup', (req, response) => {
+			var e = req.body.email;
+			var p = req.body.password;
+			console.log("Here");
+
+				var myobj = { email: e, password: p };
+				db.collection("users").insertOne(myobj, function(err, res) {
+					if (err){
+						throw err;
+						response.send("Failed to add user");
+					} 
+					console.log("1 document inserted");
+					response.send("Added user");
+					db.close();
+				})
+});
 
 app.get('/api/issues', (req, res) => {
   const filter = {};
@@ -143,3 +160,9 @@ MongoClient.connect('mongodb://localhost/issuetracker').then(connection => {
 }).catch(error => {
   console.log('ERROR:', error);
 });
+
+
+
+
+
+

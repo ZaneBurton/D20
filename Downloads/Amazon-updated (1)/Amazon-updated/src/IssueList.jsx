@@ -16,6 +16,7 @@ const IssueRow = (props) => {
       <td><Link to={`/issues/${props.issue.ISBN}`}>{props.issue.title}</Link></td>
 	  <td>{props.issue.genre}</td>
 
+
 	  
     </tr>
   );

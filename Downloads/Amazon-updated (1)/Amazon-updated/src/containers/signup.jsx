@@ -1,6 +1,7 @@
 //borrowed code from https://serverless-stack.com/chapters/create-a-login-page.html for the sign-up and login pages
 
 import React, { Component } from "react";
+import 'whatwg-fetch';
 import { Link } from 'react-router';
 
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
@@ -11,13 +12,42 @@ export default class Signup extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+	  isLogin: false,
     };
 	this.handleChange = this.handleChange.bind(this);
 	this.handleSubmit = this.handleSubmit.bind(this);
 	this.validateForm = this.validateForm.bind(this);
+	this.createUser = this.createUser.bind(this);
   }
-
+  
+   createUser() {
+		fetch(`/api/signup`,  {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				email: this.state.email,
+				password: this.state.password,
+			})
+		}).then(response => {
+			if (response.ok) {
+				this.setState({ isLogin: true });
+				this.props.history.push("/login");
+			}
+			else {
+				response.json().then(error => {
+					alert(`Failed to fetch issues ${error.message}`);
+				})
+			}
+		}).catch(err => {
+		  alert(`Error in fetching data from server: ${err}`);
+		});
+	}
+  
+  
+  
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
   }
@@ -30,7 +60,8 @@ export default class Signup extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-	window.location.replace("http://localhost:3000/login");
+	this.createUser();
+	
   }
 
   render() {

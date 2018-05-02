@@ -31,8 +31,8 @@ const RoutedApp = () => (
   <Router history={browserHistory} >
     <Redirect from="/" to="/signup" />
     <Route path="/" component={App} >
-	<Route path="/signup" exact component={Signup} />
-	<Route path="/login" exact component={Login} />
+	<Route path="/signup" exact component={withRouter(Signup)} />
+	<Route path="/login" exact component={withRouter(Login)} />
       <Route path="issues" component={withRouter(IssueList)} />
       <Route path="issues/:ISBN" component={IssueEdit} />
       <Route path="*" component={NoMatch} />

@@ -29,7 +29,7 @@ export default class Login extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-	window.location.replace("http://localhost:3000/issues");
+	this.props.history.push("http://localhost:3000/issues");
   }
 
   render() {
