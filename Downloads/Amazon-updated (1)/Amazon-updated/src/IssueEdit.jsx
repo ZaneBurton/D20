@@ -9,7 +9,7 @@ export default class IssueEdit extends React.Component {
     super();
     this.state = {
       issue: {
-        _id: '', title: '', status: '', owner: '', effort: null,
+        _id: '', title: '', status: '', owner: '', effort: '',
         completionDate: null, created: null,
       },
       invalidFields: {},
@@ -108,6 +108,8 @@ export default class IssueEdit extends React.Component {
 		<p> Author: {issue.author} </p>
 		<p> Genre: {issue.genre} </p>
 		<p> Description: {issue.description} </p>
+		<br/>
+		<button type="button">Review</button>
 		<Link to="/issues">Back to book list</Link>
       </div>
     );

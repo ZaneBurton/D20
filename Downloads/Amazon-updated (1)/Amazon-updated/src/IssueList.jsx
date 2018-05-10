@@ -46,6 +46,8 @@ function IssueTable(props) {
   );
 }
 
+
+
 IssueTable.propTypes = {
   issues: React.PropTypes.array.isRequired,
   deleteIssue: React.PropTypes.func.isRequired,
@@ -54,13 +56,42 @@ IssueTable.propTypes = {
 export default class IssueList extends React.Component {
   constructor() {
     super();
-    this.state = { issues: [] };
+    this.state = { issues: [], email: ""};
+	
 
     this.createIssue = this.createIssue.bind(this);
     this.setFilter = this.setFilter.bind(this);
     this.deleteIssue = this.deleteIssue.bind(this);
   }
-
+/*  
+  getUser() {
+		fetch(`/api/login`,  {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				email: this.state.email,
+				password: this.state.password,
+			})
+		}).catch(err => {
+		  alert(`Email or password does not match.`);
+		});
+    }
+  
+	
+  componentWillMount() {
+	  alert(this.state.email);
+		if(this.state.email === JSON.parse(sessionStorage.getItem("email"))){
+			alert("Welcome");
+		}
+		else {
+			alert("You are not signed in.");
+			this.props.history.push("/login");
+		}
+    }
+*/
+	
   componentDidMount() {
     this.loadData();
   }

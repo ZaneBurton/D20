@@ -5,12 +5,13 @@ import { Link } from 'react-router';
 export default class Login extends Component {
   constructor(props) {
     super(props);
-		this.state={
+	this.state={
 		email: "",
 	}
   }
- /* 
-    getUser() {
+  
+ /*
+ getUser() {
 		fetch(`/api/login`,  {
 			method: 'POST',
 			headers: {
@@ -25,9 +26,8 @@ export default class Login extends Component {
 		});
   }
   
-  
   componentWillMount() {
-		if(this.state.email === JSON.parse(sessionStorage.getItem("email"))){
+		if(this.state.email === JSON.parse(sessionStorage.getItem("email")) || (this.state.email === null)){
 			alert("Welcome");
 		}
 		else {
@@ -35,10 +35,10 @@ export default class Login extends Component {
 			this.props.history.push("/login");
 		}
     }
-  
   */
+  
   render() {
-	return(<p> Help </p>);
+	return(<p> Help but for the wish list </p>);
 		
   };
 }

@@ -10,7 +10,7 @@ export default class Login extends Component {
     this.state = {
       email: "",
       password: "",
-	  isLogin: false,
+	  i: 0,
     };
 	this.handleChange = this.handleChange.bind(this);
 	this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,11 +30,10 @@ export default class Login extends Component {
 			})
 		}).then(response => {
 			if (response.ok) {
-				this.setState({ isLogin: true });
 				
-				sessionStorage.setItem("email", JSON.stringify(this.state.email));
-				this.props.history.push("/issues");
-				
+				sessionStorage.setItem("email", JSON.stringify(this.state.email))
+				this.setState({i: 1});
+					
 			}
 		}).catch(err => {
 		  alert(`Email or password does not match.`);
@@ -54,6 +53,9 @@ export default class Login extends Component {
   handleSubmit(event) {
     event.preventDefault();
 	this.validateUser();
+	if(this.state.i === 1){
+		this.props.history.push("/issues");	
+	}
 	//this.props.history.push("http://localhost:3000/issues");
   }
 

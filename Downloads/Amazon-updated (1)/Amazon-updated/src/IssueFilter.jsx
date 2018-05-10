@@ -71,6 +71,10 @@ export default class IssueFilter extends React.Component {
       <div>
 		<p> Check out our selections of books! </p>
       <Link to="http://localhost:3000/shoppingcart">Shopping Cart</Link>
+	  <br/>
+	  <br/>
+		<p> Can you wish upon a star? </p>
+	  <Link to="http://localhost:3000/wishlist"> Wish List </Link>
 	  </div>
     );
   }
