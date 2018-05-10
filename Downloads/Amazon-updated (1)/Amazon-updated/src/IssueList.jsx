@@ -11,7 +11,8 @@ const IssueRow = (props) => {
   }
 
   return (
-    <tr>
+  
+    <tr draggable = 'true'>
 	  <td>{props.issue.ISBN}</td>
       <td><Link to={`/issues/${props.issue.ISBN}`}>{props.issue.title}</Link></td>
 	  <td>{props.issue.genre}</td>

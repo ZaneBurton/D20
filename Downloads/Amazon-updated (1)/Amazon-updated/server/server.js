@@ -31,6 +31,35 @@ app.post('/api/signup', (req, response) => {
 				})
 });
 
+app.post('/api/login/', (req, response) => {
+		var e = req.body.email;
+		var p = req.body.password;
+		var url = "mongodb://localhost:27017/";
+		var query = { email: e };
+		console.log(e);
+		db.collection("users").find(query).toArray(function(err, result) {
+				if (err){
+					throw err;
+					response.send('Failed');
+				}
+				//console.log(result);
+				if(result.length > 0) {
+					if(result[0].password == p) {
+						response.send("Success " + result[0].email);
+					}
+					else{
+						console.log("Error. Passwords do not match.");
+					}
+
+				}
+				else{
+					console.log("Email does not exist");
+				}
+			//db.close();
+		});	
+});
+		
+
 app.get('/api/issues', (req, res) => {
   const filter = {};
   if (req.query.status) filter.status = req.query.status;

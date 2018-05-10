@@ -9,12 +9,37 @@ export default class Login extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+	  isLogin: false,
     };
 	this.handleChange = this.handleChange.bind(this);
 	this.handleSubmit = this.handleSubmit.bind(this);
 	this.validateForm = this.validateForm.bind(this);
+	this.validateUser = this.validateUser.bind(this);
   }
+  
+    validateUser() {
+		fetch(`/api/login`,  {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				email: this.state.email,
+				password: this.state.password,
+			})
+		}).then(response => {
+			if (response.ok) {
+				this.setState({ isLogin: true });
+				
+				sessionStorage.setItem("email", JSON.stringify(this.state.email));
+				this.props.history.push("/issues");
+				
+			}
+		}).catch(err => {
+		  alert(`Email or password does not match.`);
+		});
+	}
 
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
@@ -26,10 +51,10 @@ export default class Login extends Component {
       [event.target.id]: event.target.value
     });
   }
-
   handleSubmit(event) {
     event.preventDefault();
-	this.props.history.push("http://localhost:3000/issues");
+	this.validateUser();
+	//this.props.history.push("http://localhost:3000/issues");
   }
 
   render() {

@@ -70,7 +70,7 @@ export default class IssueFilter extends React.Component {
     return (
       <div>
 		<p> Check out our selections of books! </p>
-      <Link to="">Shopping Cart</Link>
+      <Link to="http://localhost:3000/shoppingcart">Shopping Cart</Link>
 	  </div>
     );
   }

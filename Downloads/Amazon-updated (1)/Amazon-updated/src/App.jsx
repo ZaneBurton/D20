@@ -5,6 +5,7 @@ import { Router, Route, Redirect, browserHistory, withRouter } from 'react-route
 
 import Login from "./containers/Login.jsx";
 import Signup from "./containers/Signup.jsx";
+import ShoppingCart from "./containers/shoppingcart.jsx";
 
 import IssueList from './IssueList.jsx';
 import IssueEdit from './IssueEdit.jsx';
@@ -33,6 +34,7 @@ const RoutedApp = () => (
     <Route path="/" component={App} >
 	<Route path="/signup" exact component={withRouter(Signup)} />
 	<Route path="/login" exact component={withRouter(Login)} />
+	<Route path="/shoppingcart" exact component={withRouter(ShoppingCart)}/>
       <Route path="issues" component={withRouter(IssueList)} />
       <Route path="issues/:ISBN" component={IssueEdit} />
       <Route path="*" component={NoMatch} />
