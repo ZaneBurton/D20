@@ -32,7 +32,7 @@ export default class Login extends Component {
 			if (response.ok) {
 				
 				sessionStorage.setItem("email", JSON.stringify(this.state.email))
-				this.setState({i: 1});
+				this.props.history.push("/issues");	
 					
 			}
 		}).catch(err => {
@@ -53,9 +53,6 @@ export default class Login extends Component {
   handleSubmit(event) {
     event.preventDefault();
 	this.validateUser();
-	if(this.state.i === 1){
-		this.props.history.push("/issues");	
-	}
 	//this.props.history.push("http://localhost:3000/issues");
   }
 

@@ -27,7 +27,6 @@ app.post('/api/signup', (req, response) => {
 					} 
 					console.log("1 document inserted");
 					response.send("Added user");
-					db.close();
 				})
 });
 
